@@ -28,6 +28,11 @@ def encode_image_to_base64(image_path):
 st.set_page_config(page_title='Tablero Inteligente')
 st.title('Tablero Inteligente')
 with st.sidebar:
+    stroke_width = st.slider('Selecciona el ancho de línea', 1, 30, 15)
+    stroke_color = st.color_picker("Pick A Color", "#00f900")
+    st.write("The current color is", stroke_color)
+    bg_color = st.color_picker("Pick A Background Color", "#00f900")
+    st.write("The current Backgroundcolor is", bg_color)
     st.subheader("Acerca de:")
     st.subheader("En esta aplicación veremos la capacidad que ahora tiene una máquina de interpretar un boceto")
 st.subheader("Dibuja el boceto en el panel  y presiona el botón para analizarla")
@@ -35,12 +40,13 @@ st.subheader("Dibuja el boceto en el panel  y presiona el botón para analizarla
 # Add canvas component
 #bg_image = st.sidebar.file_uploader("Cargar Imagen:", type=["png", "jpg"])
 # Specify canvas parameters in application
-drawing_mode = "freedraw"
-stroke_width = st.sidebar.slider('Selecciona el ancho de línea', 1, 30, 5)
+drawing_mode = st.selectbox(
+    "Select the drawing mode",
+    ("freedraw", "line", "rect"),
+)
+
 #stroke_color = '#FFFFFF' # Set background color to white
-#bg_color = '#000000'
-stroke_color = "#000000" 
-bg_color = '#FFFFFF'
+#bg_color = '#0
 #realtime_update = st.sidebar.checkbox("Update in realtime", True)
 
 
